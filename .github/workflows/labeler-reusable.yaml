@@ -1,0 +1,21 @@
+# Nathanael Gandhi https://github.com/NathanaelGandhi/
+# MPL-2.0 licence
+
+name: 'Label issues and PRs'
+on:
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: github/issue-labeler@v3.1
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        configuration-path: ${{ inputs.config-path }}
+        include-title: 1
+        sync-labels: 1
+        enable-versioned-regex: 0
