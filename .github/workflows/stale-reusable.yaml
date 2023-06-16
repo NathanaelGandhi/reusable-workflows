@@ -1,0 +1,25 @@
+# Nathanael Gandhi https://github.com/NathanaelGandhi/
+# MPL-2.0 licence
+
+name: 'Label stale issues and PRs'
+on:
+  workflow_call:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v8
+        with:
+          stale-issue-message: 'This issue is stale because it has been open 60 days with no activity. Label will be removed with new activity.'
+          stale-pr-message: 'This PR is stale because it has been open 30 days with no activity. Label will be removed with new activity.'
+          close-issue-message: 'This message should never appear. This issue was closed due to a configuration error.'
+          close-pr-message: 'This message should never appear. This PR was closed due to a configuration error.'
+          days-before-stale: 60
+          days-before-pr-stale: 30
+          days-before-issue-close: -1
+          days-before-pr-close: -1
