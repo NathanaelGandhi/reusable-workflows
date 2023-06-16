@@ -18,3 +18,4 @@ jobs:
         configuration-path: ${{ inputs.config-path }}
         include-title: 1
         sync-labels: 1
+        enable-versioned-regex: 0
