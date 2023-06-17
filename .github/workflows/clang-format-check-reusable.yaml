@@ -1,0 +1,45 @@
+name: 'Clang Format Check'
+
+on:
+  workflow_call:
+
+# Force bash to apply pipefail option so pipeline failures aren't masked
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  skip-duplicate-actions:
+    uses: NathanaelGandhi/reusable-workflows/.github/workflows/duplicate-actions-check-reusable.yaml>
+  format-check:
+    name: Format check
+    #Continue if check-for-duplicates found no duplicates. Always runs for pull-requests.
+    needs: skip-duplicate-actions
+    if: ${{ needs.skip-duplicate-actions.outputs.should_skip != 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Install format checker
+        run: |
+          apt-get update && apt-get install clang-format
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: repo
+      - name: Generate format differences
+        run: |
+          cd repo
+          find . -name "*.[ch]" -exec clang-format -i -style=file {} +
+          git diff > $GITHUB_WORKSPACE/style_differences.txt
+      - name: Archive Static Analysis Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: style_differences
+          path: style_differences.txt
+      - name: Error on differences
+        run: |
+          if [[ -s style_differences.txt ]];
+          then
+            cat style_differences.txt
+            exit -1
+          fi
