@@ -1,0 +1,24 @@
+name: 'Duplicate Actions Check'
+
+on:
+  workflow_call:
+    # Map the workflow outputs to job outputs
+    outputs:
+      should_skip:
+        description: "The first output string"
+        value: ${{ jobs.check-for-duplicates.outputs.should_skip }}
+
+jobs:
+  #Checks for duplicate actions. Skips push actions if there is a matching or duplicate pull-request action. 
+  check-for-duplicates:
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
+        with:
+          concurrent_skipping: 'same_content'
+          skip_after_successful_duplicate: 'true'
+          do_not_skip: '["pull_request", "workflow_dispatch", "schedule"]'
