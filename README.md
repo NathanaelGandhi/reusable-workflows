@@ -1,6 +1,8 @@
 # reusable-workflows
-Nathanael Gandhi https://github.com/NathanaelGandhi/
-MPL-2.0 licence
+Nathanael Gandhi | github.com/NathanaelGandhi
+
+## Clang Format Check
+- [Clang Format Check Caller](.github/workflows/clang-format-check-caller.yaml)
 
 ## Labeler
 - [Labeler Caller](.github/workflows/labeler-caller.yaml)
