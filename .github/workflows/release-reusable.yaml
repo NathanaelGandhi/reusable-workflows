@@ -45,24 +45,28 @@ jobs:
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
           COMPLETE=false
+
           while [ "$COMPLETE" == "false" ]; do
-            CHECKS=$(curl -s -X GET \
+            CHECKS=$(curl -s -X POST \
               -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
               -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/check-suites")
-            ALL_COMPLETED=true
-            for check in $(echo "$CHECKS" | jq -r '.check_suites[].conclusion'); do
-              if [ "$check" != "success" ] && [ "$check" != "neutral" ]; then
-                ALL_COMPLETED=false
-                break
-              fi
-            done
-            if [ "$ALL_COMPLETED" == "true" ]; then
+              -d @- \
+              "https://api.github.com/graphql" <<-EOF
+                {
+                  "query": "query { repository(owner: \\"${{ github.repository_owner }}\\", name: \\"${{ github.repository }}\\") { pullRequest(number: ${PR_NUMBER}) { commits(last: 1) { nodes { commit { statusCheckRollup { state } } } } } } }"
+                }
+              EOF
+            )
+
+            STATE=$(echo "$CHECKS" | jq -r '.data.repository.pullRequest.commits.nodes[0].commit.statusCheckRollup.state')
+
+            if [ "$STATE" == "SUCCESS" ]; then
               COMPLETE=true
             else
               sleep 10
             fi
           done
+
           echo "All required status checks completed or failed."
       # merge PR using GitHub CLI
       - name: merge PR with release info
