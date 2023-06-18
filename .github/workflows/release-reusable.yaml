@@ -49,10 +49,10 @@ jobs:
             CHECKS=$(curl -s -X GET \
               -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
               -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/reviews")
+              "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/check-suites")
             ALL_COMPLETED=true
-            for check in $(echo "$CHECKS" | jq -r '.[] | .state'); do
-              if [ "$check" != "APPROVED" ] && [ "$check" != "CHANGES_REQUESTED" ] && [ "$check" != "COMMENTED" ]; then
+            for check in $(echo "$CHECKS" | jq -r '.check_suites[].conclusion'); do
+              if [ "$check" != "success" ] && [ "$check" != "neutral" ]; then
                 ALL_COMPLETED=false
                 break
               fi
