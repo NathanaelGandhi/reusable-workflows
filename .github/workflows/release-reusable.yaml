@@ -36,14 +36,14 @@ jobs:
       - name: create PR with release info
         if: steps.changelog.outputs.skipped == 'false'
         id: create-pr
-        run: gh pr create --base main --head release-from-${{ github.sha }} --title "${{ env.prefix_title }} ${{ steps.changelog.outputs.tag }} release [skip ci]" --body "Created by Github action in release workflow"
+        run: gh pr create --base main --head release-from-${{ github.sha }} --title "${{ env.prefix_title }} ${{ steps.changelog.outputs.tag }} release" --body "Created by Github action in release workflow"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # merge PR using GitHub CLI
       - name: merge PR with release info
         if: steps.changelog.outputs.skipped == 'false'
         id: merge-pr
-        run: gh pr merge --auto ${{ inputs.merge-type }} --subject "${{ env.prefix_title }} ${{ steps.changelog.outputs.tag }} release [skip ci]" --delete-branch
+        run: gh pr merge --auto ${{ inputs.merge-type }} --subject "${{ env.prefix_title }} ${{ steps.changelog.outputs.tag }} release" --delete-branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # release info is now in main so we can continue
