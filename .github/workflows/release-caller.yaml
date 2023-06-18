@@ -16,4 +16,6 @@ permissions:
 jobs:
   release-conventional-changelog:
     uses: NathanaelGandhi/reusable-workflows/.github/workflows/release-reusable.yaml@main
+    with:
+      merge-type: --rebase
     secrets: inherit

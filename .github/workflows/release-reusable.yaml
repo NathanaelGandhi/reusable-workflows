@@ -2,6 +2,10 @@ name: 'Release'
 
 on:
   workflow_call:
+    inputs:
+      merge-type:
+        required: true
+        type: string
 
 jobs:
   release-conventional-changelog:
@@ -35,7 +39,7 @@ jobs:
       - name: merge PR with release info
         if: steps.changelog.outputs.skipped == 'false'
         id: merge-pr
-        run: gh pr merge --admin --subject "chore(changelog)':' ${{ steps.changelog.outputs.tag }} release [skip ci]" --delete-branch
+        run: gh pr merge --admin  ${{ inputs.merge-type }} --subject "chore(changelog)':' ${{ steps.changelog.outputs.tag }} release [skip ci]" --delete-branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # release info is now in main so we can continue
