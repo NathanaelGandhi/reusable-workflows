@@ -8,6 +8,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  clang-format-check:
+  release-conventional-changelog:
     uses: NathanaelGandhi/reusable-workflows/.github/workflows/release-reusable.yaml@main
     secrets: inherit
