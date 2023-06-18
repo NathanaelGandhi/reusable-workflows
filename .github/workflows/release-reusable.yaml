@@ -6,10 +6,6 @@ on:
 jobs:
   release-conventional-changelog:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      packages: write
-      pull-requests: write
     steps:
       # check out the repository with all releases
       - uses: actions/checkout@v3
