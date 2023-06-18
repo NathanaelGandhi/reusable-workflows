@@ -35,7 +35,7 @@ jobs:
       - name: merge PR with release info
         if: steps.changelog.outputs.skipped == 'false'
         id: merge-pr
-        run: gh pr merge --admin --merge --subject "chore(changelog)':' ${{ steps.changelog.outputs.tag }} release [skip ci]" --delete-branch
+        run: gh pr merge --admin --subject "chore(changelog)':' ${{ steps.changelog.outputs.tag }} release [skip ci]" --delete-branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # release info is now in main so we can continue
