@@ -23,6 +23,7 @@ jobs:
           git-branch: "release-from-${{ github.sha }}"
           skip-on-empty: true
           skip-git-pull: true
+          version-file: "./VERSION.yaml"
       # create PR using GitHub CLI
       - name: create PR with release info
         if: steps.changelog.outputs.skipped == 'false'
