@@ -45,7 +45,6 @@ jobs:
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
           COMPLETE=false
-
           while [ "$COMPLETE" == "false" ]; do
             CHECKS=$(curl -s -X POST \
               -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
@@ -57,16 +56,13 @@ jobs:
                 }
               EOF
             )
-
             STATE=$(echo "$CHECKS" | jq -r '.data.repository.pullRequest.commits.nodes[0].commit.statusCheckRollup.state')
-
             if [ "$STATE" == "SUCCESS" ]; then
               COMPLETE=true
             else
               sleep 10
             fi
           done
-
           echo "All required status checks completed or failed."
       # merge PR using GitHub CLI
       - name: merge PR with release info
