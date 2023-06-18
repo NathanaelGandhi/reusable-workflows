@@ -27,7 +27,7 @@ jobs:
           git-branch: "release-from-${{ github.sha }}"
           skip-on-empty: true
           skip-git-pull: true
-          version-file: "./VERSION.md"
+          version-file: "./VERSION.yaml"
       # create title prefix env
       - name: generate title prefix env
         run: |
