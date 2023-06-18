@@ -36,9 +36,34 @@ jobs:
       - name: create PR with release info
         if: steps.changelog.outputs.skipped == 'false'
         id: create-pr
-        run: gh pr create --base main --head release-from-${{ github.sha }} --title "${{ env.prefix_title }} ${{ steps.changelog.outputs.tag }} release" --body "Created by Github action in release workflow"
+        run: gh pr create --base main --head release-from-${{ github.sha }} --title "${{ env.prefix_title }} ${{ steps.changelog.outputs.tag }} release [skip ci]" --body "Created by Github action in release workflow"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # wait for required status checks to pass or fail
+      - name: wait for required status checks
+        id: wait-for-checks
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          COMPLETE=false
+          while [ "$COMPLETE" == "false" ]; do
+            CHECKS=$(curl -s -X GET \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/reviews")
+            ALL_COMPLETED=true
+            for check in $(echo "$CHECKS" | jq -r '.[] | .state'); do
+              if [ "$check" != "APPROVED" ] && [ "$check" != "CHANGES_REQUESTED" ] && [ "$check" != "COMMENTED" ]; then
+                ALL_COMPLETED=false
+                break
+              fi
+            done
+            if [ "$ALL_COMPLETED" == "true" ]; then
+              COMPLETE=true
+            else
+              sleep 10
+            fi
+          done
+          echo "All required status checks completed or failed."
       # merge PR using GitHub CLI
       - name: merge PR with release info
         if: steps.changelog.outputs.skipped == 'false'
