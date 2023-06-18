@@ -39,36 +39,11 @@ jobs:
         run: gh pr create --base main --head release-from-${{ github.sha }} --title "${{ env.prefix_title }} ${{ steps.changelog.outputs.tag }} release [skip ci]" --body "Created by Github action in release workflow"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # wait for required status checks to pass or fail
-      - name: wait for required status checks
-        id: wait-for-checks
-        run: |
-          PR_NUMBER=${{ github.event.pull_request.number }}
-          COMPLETE=false
-          while [ "$COMPLETE" == "false" ]; do
-            CHECKS=$(curl -s -X POST \
-              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              -d @- \
-              "https://api.github.com/graphql" <<-EOF
-                {
-                  "query": "query { repository(owner: \\"${{ github.repository_owner }}\\", name: \\"${{ github.repository }}\\") { pullRequest(number: ${PR_NUMBER}) { commits(last: 1) { nodes { commit { statusCheckRollup { state } } } } } } }"
-                }
-              EOF
-            )
-            STATE=$(echo "$CHECKS" | jq -r '.data.repository.pullRequest.commits.nodes[0].commit.statusCheckRollup.state')
-            if [ "$STATE" == "SUCCESS" ]; then
-              COMPLETE=true
-            else
-              sleep 10
-            fi
-          done
-          echo "All required status checks completed or failed."
       # merge PR using GitHub CLI
       - name: merge PR with release info
         if: steps.changelog.outputs.skipped == 'false'
         id: merge-pr
-        run: gh pr merge --admin  ${{ inputs.merge-type }} --subject "${{ env.prefix_title }} ${{ steps.changelog.outputs.tag }} release [skip ci]" --delete-branch
+        run: gh pr merge --auto ${{ inputs.merge-type }} --subject "${{ env.prefix_title }} ${{ steps.changelog.outputs.tag }} release [skip ci]" --delete-branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # release info is now in main so we can continue
