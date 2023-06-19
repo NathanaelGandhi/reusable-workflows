@@ -1,4 +1,13 @@
-# 0.6.0 (2023-06-19)
+## [0.6.1](https://github.com/NathanaelGandhi/reusable-workflows/compare/v0.6.0...v0.6.1) (2023-06-19)
+
+
+### Bug Fixes
+
+* **labeler:** swap to labeler-reusable-workflow ([0b85a0e](https://github.com/NathanaelGandhi/reusable-workflows/commit/0b85a0eb492f5a67abf7c5f80ac217ccbd47b1b4))
+
+
+
+# [0.6.0](https://github.com/NathanaelGandhi/reusable-workflows/compare/13e7b2c708eb65c389008c31c849bcc28508a5b5...v0.6.0) (2023-06-19)
 
 
 ### Bug Fixes
