@@ -6,10 +6,13 @@ Nathanael Gandhi | github.com/NathanaelGandhi
 
 - [Clang Format Check Caller](.github/workflows/clang-format-check-caller.yaml)
 
-## Labeler
+## labeler-reusable-workflow
 
-- [Labeler Caller](.github/workflows/labeler-caller.yaml)
-  - [Labeler Config](.github/labeler.yml)
+See [github.com/NathanaelGandhi/labeler-reusable-workflow](github.com/NathanaelGandhi/labeler-reusable-workflow for the latest version.
+)
+
+1. Copy the [labeler-caller.yaml](.github/workflows/labeler-caller.yaml) into your own .github/workflows folder
+2. Copy the [labeler.yml](.github/labeler.yml) into your own ```.github/``` folder
 
 ## Release
 

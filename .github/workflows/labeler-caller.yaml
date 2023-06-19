@@ -1,5 +1,4 @@
-# Nathanael Gandhi https://github.com/NathanaelGandhi/
-# MPL-2.0 licence
+# Nathanael Gandhi | github.com/NathanaelGandhi
 
 name: 'Label issues and PRs'
 on:
@@ -9,13 +8,14 @@ on:
     types: [opened, edited, auto_merge_enabled]
 
 permissions:
+  contents: read
   issues: write
   pull-requests: write
-  contents: read
 
 jobs:
   call-reusable:
-    uses: NathanaelGandhi/reusable-workflows/.github/workflows/labeler-reusable.yaml@main
+    uses: NathanaelGandhi/labeler-reusable-workflow/.github/workflows/labeler-reusable.yaml@main
     with:
       config-path: .github/labeler.yml
-    secrets: inherit
+    secrets:
+      caller_token: ${{ secrets.GITHUB_TOKEN }}
