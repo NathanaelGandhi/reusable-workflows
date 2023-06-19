@@ -1,8 +1,9 @@
-# 0.5.0 (2023-06-18)
+# 0.6.0 (2023-06-19)
 
 
 ### Bug Fixes
 
+* **release:** swap to NG/release-reusable-workflow ([633135f](https://github.com/NathanaelGandhi/reusable-workflows/commit/633135f64cc4e15ee8b7f70c96d750b8866f1a3f))
 * **workflows:** clang-format-check caller dispatch and secrets ([718ec1a](https://github.com/NathanaelGandhi/reusable-workflows/commit/718ec1a2e88a788bd178d6bc4c4aed8ac3689165))
 
 
