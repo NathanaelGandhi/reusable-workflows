@@ -6,19 +6,14 @@ Nathanael Gandhi | github.com/NathanaelGandhi
 
 - [Clang Format Check Caller](.github/workflows/clang-format-check-caller.yaml)
 
-## labeler-reusable-workflow
+## release-drafter-reusable-workflow
 
-See [github.com/NathanaelGandhi/labeler-reusable-workflow](github.com/NathanaelGandhi/labeler-reusable-workflow) for the latest version.
+This workflow can autolabel PRs, create draft releases and publish the release. Configure the caller as required.
 
-1. Copy the [labeler-caller.yaml](.github/workflows/labeler-caller.yaml) into your own .github/workflows folder
-2. Copy the [labeler.yml](.github/labeler.yml) into your own ```.github/``` folder
+See [github.com/NathanaelGandhi/release-drafter-reusable-workflow](github.com/NathanaelGandhi/release-drafter-reusable-workflow) for the latest version.
 
-## release-reusable-action
-
-See [github.com/NathanaelGandhi/release-reusable-workflow](github.com/NathanaelGandhi/release-reusable-workflow) for the latest version.
-
-1. Copy the [release-caller.yaml](.github/workflows/release-caller.yaml) into your own ```.github/workflows``` folder
-2. Create a blank ```VERSION.yaml``` file in your ```root``` directory
+1. Copy the [release-drafter-caller.yaml](.github/workflows/release-drafter-caller.yaml) into your own ```.github/workflows``` folder
+2. Copy the [release-drafter.yml](.github/release-drafter.yml) into your own ```.github/``` folder
 
 ## Stale
 
