@@ -1,6 +1,4 @@
-# Nathanael Gandhi | github.com/NathanaelGandhi
-
-name: 'Clang Format Check'
+name: 'Clang Format Check Caller'
 on:
   push:
   pull_request:
@@ -8,5 +6,6 @@ on:
 
 jobs:
   clang-format-check:
-    uses: NathanaelGandhi/reusable-workflows/.github/workflows/clang-format-check-reusable.yaml@main
-    secrets: inherit
+    uses: NathanaelGandhi/clang-format-check-reusable-workflow/.github/workflows/clang-format-check-reusable.yaml@v0.1.0
+    secrets:
+      caller_token: ${{ secrets.GITHUB_TOKEN }}
