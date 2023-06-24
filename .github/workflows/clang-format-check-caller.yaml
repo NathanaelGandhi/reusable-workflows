@@ -1,4 +1,5 @@
 name: 'Clang Format Check Caller'
+
 on:
   push:
   pull_request:
