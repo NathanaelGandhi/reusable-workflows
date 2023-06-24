@@ -1,4 +1,5 @@
 name: 'Release Schedule Caller'
+
 on:
   schedule:
     # publish release weekly on Monday at 00:01
@@ -11,7 +12,7 @@ permissions:
 
 jobs:
   call-reusable:
-    uses: NathanaelGandhi/release-drafter-reusable-workflow/.github/workflows/release-drafter-reusable.yaml@main
+    uses: NathanaelGandhi/release-drafter-reusable-workflow/.github/workflows/release-drafter-reusable.yaml@v0.1.0
     with:
       # specify config name to use, relative to .github/.
       config-path: release-drafter.yml
