@@ -7,3 +7,6 @@
 [submodule "release-drafter-reusable-workflow"]
 	path = release-drafter-reusable-workflow
 	url = git@github.com:NathanaelGandhi/release-drafter-reusable-workflow.git
+[submodule "stale-reusable-workflow"]
+	path = stale-reusable-workflow
+	url = git@github.com:NathanaelGandhi/stale-reusable-workflow.git
