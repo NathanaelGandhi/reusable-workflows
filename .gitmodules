@@ -4,3 +4,6 @@
 [submodule "clang-format-check-reusable-workflow"]
 	path = clang-format-check-reusable-workflow
 	url = git@github.com:NathanaelGandhi/clang-format-check-reusable-workflow.git
+[submodule "release-drafter-reusable-workflow"]
+	path = release-drafter-reusable-workflow
+	url = git@github.com:NathanaelGandhi/release-drafter-reusable-workflow.git
