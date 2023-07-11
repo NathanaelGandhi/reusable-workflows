@@ -1,3 +1,6 @@
 [submodule "auto-assign-pr-reusable-workflow"]
 	path = auto-assign-pr-reusable-workflow
 	url = git@github.com:NathanaelGandhi/auto-assign-pr-reusable-workflow.git
+[submodule "clang-format-check-reusable-workflow"]
+	path = clang-format-check-reusable-workflow
+	url = git@github.com:NathanaelGandhi/clang-format-check-reusable-workflow.git
