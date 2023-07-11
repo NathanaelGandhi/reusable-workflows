@@ -2,6 +2,15 @@
 
 Nathanael Gandhi | github.com/NathanaelGandhi
 
+## auto-assign-pr-reusable-workflow
+
+This workflow can auto-assign PRs. Configure the caller as required.
+
+See [https://github.com/NathanaelGandhi/auto-assign-pr-reusable-workflow](https://github.com/NathanaelGandhi/auto-assign-pr-reusable-workflow) for the latest version.
+
+1. Copy the [auto-assign-pr-caller.yaml](.github/workflows/auto-assign-pr-caller.yaml) into your own ```.github/workflows``` folder
+2. Copy the [auto_assign_pr.yml](.github/auto_assign_pr.yml) into your own ```.github/``` folder
+
 ## Clang Format Check
 
 This workflow can run Clang-Format on your repo using the style listed in a .clang-format file. Configure the caller as required.
