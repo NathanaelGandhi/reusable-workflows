@@ -1,0 +1,3 @@
+[submodule "auto-assign-pr-reusable-workflow"]
+	path = auto-assign-pr-reusable-workflow
+	url = git@github.com:NathanaelGandhi/auto-assign-pr-reusable-workflow.git
