@@ -19,6 +19,14 @@ See [https://github.com/NathanaelGandhi/clang-format-check-reusable-workflow](ht
 
 1. Copy the [clang-format-check-caller.yaml](.github/workflows/clang-format-check-caller.yaml) into your own ```.github/workflows``` folder
 
+# pr-size-labeler-reusable-workflow
+
+This workflow can auto-label PRs with their size. Configure the caller as required.
+
+See [https://github.com/NathanaelGandhi/pr-size-labeler-reusable-workflow](https://github.com/NathanaelGandhi/pr-size-labeler-reusable-workflow) for the latest version.
+
+1. Copy the [pr-size-labeler-caller.yaml](.github/workflows/pr-size-labeler-caller.yaml) into your own ```.github/workflows``` folder
+
 ## release-drafter-reusable-workflow
 
 This workflow can auto-label PRs, create draft releases and publish the release. Configure the caller as required.
