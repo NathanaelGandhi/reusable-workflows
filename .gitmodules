@@ -10,3 +10,6 @@
 [submodule "stale-reusable-workflow"]
 	path = stale-reusable-workflow
 	url = git@github.com:NathanaelGandhi/stale-reusable-workflow.git
+[submodule "pr-size-labeler-reusable-workflow"]
+	path = pr-size-labeler-reusable-workflow
+	url = git@github.com:NathanaelGandhi/pr-size-labeler-reusable-workflow.git
