@@ -15,6 +15,7 @@ categories:
   - title: '🧰 Maintenance'
     collapse-after: 5
     labels: 
+      - 'build'
       - 'chore'
       - 'ci'
       - 'documentation'
@@ -35,6 +36,9 @@ autolabeler:
   - label: 'bug'
     title:
       - '/bug/i'
+  - label: 'build'
+    title:
+      - '/build/i'
   - label: 'chore'
     title:
     - '/chore/i'
@@ -78,6 +82,7 @@ version-resolver:
     labels:
       - 'patch'
       - 'bug'
+      - 'build'
       - 'chore'
       - 'ci'
       - 'dependencies'
